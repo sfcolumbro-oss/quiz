@@ -2,205 +2,80 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz</title>
-  <style>
-      body {
-  background-color: #ffc0cb; /* rosa */
-  background-image: url('https://i.imgur.com/fxU6X3L.png'); /* impronte nere */
-  background-repeat: repeat;
-  background-size: 80px;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-};
-    }
-    .container {
-      width: 90%;
-      max-width: 600px;
-    }
-    .question-box {
-      display: none;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      animation: fadeIn 0.6s ease;
-    }
-    .question-box.active {
-      display: block;
-    }
-    h1 {
-      text-align: center;
-      color: white;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-    h2 {
-      margin-bottom: 15px;
-      color: #333;
-    }
-    button {
-      display: block;
-      margin: 10px 0;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      background: #0077cc;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s, transform 0.1s;
-    }
-    button:hover {
-      background: #005fa3;
-      transform: scale(1.02);
-    }
-    .hint {
-      margin-top: 12px;
-      color: #d9534f;
-      font-style: italic;
-    }
-    #congrats {
-      display: none;
-      text-align: center;
-      font-size: 26px;
-      padding: 40px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      animation: fadeIn 0.6s ease;
-      position: relative;
-      z-index: 1;
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz a Risposta Multipla</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <canvas id="confetti"></canvas>
-
-  <div class="container">
-    <h1>Quiz Interattivo</h1>
+  <div class="quiz-container">
+    <h1>Quiz 🐾</h1>
     <div id="quiz"></div>
-    <div id="congrats">🎉 Congratulazioni! Hai completato il quiz! 🎉</div>
+    <div id="feedback"></div>
+    <button id="next-btn" style="display:none;">Prossima domanda ➡️</button>
   </div>
 
   <script>
-    const questions = [
-      {
-        text: "Qual è il colore del cielo in una giornata serena?",
-        answers: [
-          { text: "Blu", correct: true },
-          { text: "Verde", correct: false, hint: "Pensa al mare, ma più in alto!" },
-          { text: "Rosso", correct: false, hint: "Rosso solo al tramonto..." }
-        ]
-      },
-      {
-        text: "Quanto fa 2 + 2?",
-        answers: [
-          { text: "3", correct: false, hint: "Un po' di più!" },
-          { text: "4", correct: true },
-          { text: "5", correct: false, hint: "Troppo alto!" }
-        ]
-      },
-      {
-        text: "Quale animale fa 'miao'?",
-        answers: [
-          { text: "Cane", correct: false, hint: "Quello abbaia." },
-          { text: "Gatto", correct: true },
-          { text: "Mucca", correct: false, hint: "Quella fa 'muuu'!" }
-        ]
-      }
+    // Domande del quiz
+    const domande = [
+      { q: "Qual è il colore del cielo?", risposte: ["Azzurro", "Verde", "Rosso"], corretta: 0, suggerimento: "Guardalo di giorno 😉" },
+      { q: "Quanto fa 2 + 2?", risposte: ["3", "4", "5"], corretta: 1, suggerimento: "È un numero pari." },
+      { q: "Quale animale fa 'miao'?", risposte: ["Cane", "Gatto", "Mucca"], corretta: 1, suggerimento: "È un felino." },
+      { q: "Qual è la capitale d'Italia?", risposte: ["Roma", "Milano", "Napoli"], corretta: 0, suggerimento: "Si trova nel Lazio." },
+      { q: "Quante ore ci sono in un giorno?", risposte: ["12", "24", "36"], corretta: 1, suggerimento: "Due volte 12." },
+      { q: "Qual è il frutto simbolo di Newton?", risposte: ["Pera", "Mela", "Banana"], corretta: 1, suggerimento: "Ne cadde una dall'albero 🍎" },
+      { q: "Quale pianeta è conosciuto come 'pianeta rosso'?", risposte: ["Marte", "Venere", "Saturno"], corretta: 0, suggerimento: "È vicino alla Terra." },
+      { q: "Quanti continenti ci sono?", risposte: ["5", "6", "7"], corretta: 2, suggerimento: "Sono più di 6." },
+      { q: "Chi dipinse la Gioconda?", risposte: ["Michelangelo", "Raffaello", "Leonardo da Vinci"], corretta: 2, suggerimento: "Era anche inventore." },
+      { q: "Qual è il mare che bagna l’Italia a est?", risposte: ["Adriatico", "Tirreno", "Ionio"], corretta: 0, suggerimento: "Confina con la Croazia." }
     ];
 
+    let indice = 0;
+
     const quizDiv = document.getElementById("quiz");
+    const feedbackDiv = document.getElementById("feedback");
+    const nextBtn = document.getElementById("next-btn");
 
-    questions.forEach((q, i) => {
-      const box = document.createElement("div");
-      box.className = "question-box";
-      if (i === 0) box.classList.add("active");
+    function mostraDomanda() {
+      feedbackDiv.textContent = "";
+      nextBtn.style.display = "none";
 
-      const qText = document.createElement("h2");
-      qText.textContent = q.text;
-      box.appendChild(qText);
-
-      const hint = document.createElement("div");
-      hint.className = "hint";
-      box.appendChild(hint);
-
-      q.answers.forEach(a => {
+      const domanda = domande[indice];
+      quizDiv.innerHTML = `<p><strong>Domanda ${indice+1}:</strong> ${domanda.q}</p>`;
+      domanda.risposte.forEach((r, i) => {
         const btn = document.createElement("button");
-        btn.textContent = a.text;
-        btn.onclick = () => {
-          if (a.correct) {
-            box.classList.remove("active");
-            if (i + 1 < questions.length) {
-              quizDiv.children[i + 1].classList.add("active");
-            } else {
-              document.getElementById("congrats").style.display = "block";
-              startConfetti();
-            }
-          } else {
-            hint.textContent = a.hint || "Risposta sbagliata, riprova!";
-          }
-        };
-        box.appendChild(btn);
+        btn.textContent = r;
+        btn.onclick = () => controllaRisposta(i);
+        quizDiv.appendChild(btn);
       });
-
-      quizDiv.appendChild(box);
-    });
-
-    // 🎊 Effetto coriandoli
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    let confetti = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    function Confetto() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height - canvas.height;
-      this.size = Math.random() * 8 + 4;
-      this.speed = Math.random() * 3 + 2;
-      this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
-      this.tilt = Math.random() * 10 - 10;
     }
 
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confetti.forEach((c, i) => {
-        ctx.beginPath();
-        ctx.ellipse(c.x, c.y, c.size, c.size / 2, c.tilt, 0, 2 * Math.PI);
-        ctx.fillStyle = c.color;
-        ctx.fill();
-        c.y += c.speed;
-        c.x += Math.sin(c.y * 0.05);
-        if (c.y > canvas.height) confetti[i] = new Confetto();
-      });
-      requestAnimationFrame(drawConfetti);
+    function controllaRisposta(i) {
+      const domanda = domande[indice];
+      if (i === domanda.corretta) {
+        feedbackDiv.textContent = "✅ Corretto!";
+        nextBtn.style.display = "block";
+      } else {
+        feedbackDiv.textContent = "❌ Sbagliato! Suggerimento: " + domanda.suggerimento;
+      }
     }
 
-    function startConfetti() {
-      confetti = Array.from({ length: 200 }, () => new Confetto());
-      drawConfetti();
+    nextBtn.onclick = () => {
+      indice++;
+      if (indice < domande.length) {
+        mostraDomanda();
+      } else {
+        mostraCongratulazioni();
+      }
+    };
+
+    function mostraCongratulazioni() {
+      quizDiv.innerHTML = "<h2>🎉 Congratulazioni! Hai completato il quiz! 🎉</h2>";
+      feedbackDiv.textContent = "";
+      nextBtn.style.display = "none";
     }
+
+    // Avvio
+    mostraDomanda();
   </script>
-
 </body>
 </html>
