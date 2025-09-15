@@ -1,0 +1,40 @@
+/* Sfondo pagina con zampette nere su rosa */
+body {
+  background-color: #ffc0cb; /* rosa */
+  background-image: url('https://i.imgur.com/fxU6X3L.png'); /* pattern zampe nere */
+  background-repeat: repeat;
+  background-size: 80px; /* dimensione delle impronte */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenitore centrale del quiz */
+.quiz-container {
+  background: rgba(255, 255, 255, 0.9); /* sfondo bianco trasparente */
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+/* Stile dei pulsanti */
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #ff69b4; /* rosa più acceso */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #ff1493; /* rosa scuro al passaggio */
+}
