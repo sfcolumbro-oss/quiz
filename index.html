@@ -2,80 +2,19 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz a Risposta Multipla</title>
+  <title>Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>Quiz 🐾</h1>
+
+  <canvas id="confetti"></canvas>
+
+  <div class="container">
+    <h1>Quiz Interattivo</h1>
     <div id="quiz"></div>
-    <div id="feedback"></div>
-    <button id="next-btn" style="display:none;">Prossima domanda ➡️</button>
+    <div id="congrats">🎉 Congratulazioni! Hai completato il quiz! 🎉</div>
   </div>
 
-  <script>
-    // Domande del quiz
-    const domande = [
-      { q: "Qual è il colore del cielo?", risposte: ["Azzurro", "Verde", "Rosso"], corretta: 0, suggerimento: "Guardalo di giorno 😉" },
-      { q: "Quanto fa 2 + 2?", risposte: ["3", "4", "5"], corretta: 1, suggerimento: "È un numero pari." },
-      { q: "Quale animale fa 'miao'?", risposte: ["Cane", "Gatto", "Mucca"], corretta: 1, suggerimento: "È un felino." },
-      { q: "Qual è la capitale d'Italia?", risposte: ["Roma", "Milano", "Napoli"], corretta: 0, suggerimento: "Si trova nel Lazio." },
-      { q: "Quante ore ci sono in un giorno?", risposte: ["12", "24", "36"], corretta: 1, suggerimento: "Due volte 12." },
-      { q: "Qual è il frutto simbolo di Newton?", risposte: ["Pera", "Mela", "Banana"], corretta: 1, suggerimento: "Ne cadde una dall'albero 🍎" },
-      { q: "Quale pianeta è conosciuto come 'pianeta rosso'?", risposte: ["Marte", "Venere", "Saturno"], corretta: 0, suggerimento: "È vicino alla Terra." },
-      { q: "Quanti continenti ci sono?", risposte: ["5", "6", "7"], corretta: 2, suggerimento: "Sono più di 6." },
-      { q: "Chi dipinse la Gioconda?", risposte: ["Michelangelo", "Raffaello", "Leonardo da Vinci"], corretta: 2, suggerimento: "Era anche inventore." },
-      { q: "Qual è il mare che bagna l’Italia a est?", risposte: ["Adriatico", "Tirreno", "Ionio"], corretta: 0, suggerimento: "Confina con la Croazia." }
-    ];
-
-    let indice = 0;
-
-    const quizDiv = document.getElementById("quiz");
-    const feedbackDiv = document.getElementById("feedback");
-    const nextBtn = document.getElementById("next-btn");
-
-    function mostraDomanda() {
-      feedbackDiv.textContent = "";
-      nextBtn.style.display = "none";
-
-      const domanda = domande[indice];
-      quizDiv.innerHTML = `<p><strong>Domanda ${indice+1}:</strong> ${domanda.q}</p>`;
-      domanda.risposte.forEach((r, i) => {
-        const btn = document.createElement("button");
-        btn.textContent = r;
-        btn.onclick = () => controllaRisposta(i);
-        quizDiv.appendChild(btn);
-      });
-    }
-
-    function controllaRisposta(i) {
-      const domanda = domande[indice];
-      if (i === domanda.corretta) {
-        feedbackDiv.textContent = "✅ Corretto!";
-        nextBtn.style.display = "block";
-      } else {
-        feedbackDiv.textContent = "❌ Sbagliato! Suggerimento: " + domanda.suggerimento;
-      }
-    }
-
-    nextBtn.onclick = () => {
-      indice++;
-      if (indice < domande.length) {
-        mostraDomanda();
-      } else {
-        mostraCongratulazioni();
-      }
-    };
-
-    function mostraCongratulazioni() {
-      quizDiv.innerHTML = "<h2>🎉 Congratulazioni! Hai completato il quiz! 🎉</h2>";
-      feedbackDiv.textContent = "";
-      nextBtn.style.display = "none";
-    }
-
-    // Avvio
-    mostraDomanda();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
