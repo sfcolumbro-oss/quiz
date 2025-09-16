@@ -4,19 +4,19 @@ body {
   padding: 0;
   background-color: pink;
   background-image: url("18e8917895223c3f2354604deb7fb85c.png");
-  background-size: 80px 80px; /* più piccolo su mobile */
+  background-size: 80px 80px;
   background-repeat: repeat;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* meglio scrollabile su mobile */
+  align-items: flex-start;
   padding-top: 20px;
   overflow-x: hidden;
 }
 
 .container {
   width: 95%;
-  max-width: 500px; /* ridotto per mobile */
+  max-width: 500px;
   background: rgba(255, 255, 255, 0.95);
   padding: 20px;
   border-radius: 12px;
@@ -37,28 +37,28 @@ body {
 h1 {
   text-align: center;
   color: #333;
-  margin-bottom: 15px;
-  font-size: 22px;
+  margin-bottom: 20px; /* Aumento dello spazio */
+  font-size: 24px; /* Dimensione base più grande */
 }
 
 h2 {
-  margin-bottom: 12px;
+  margin-bottom: 15px; /* Aumento dello spazio */
   color: #333;
-  font-size: 18px;
+  font-size: 20px; /* Dimensione base più grande */
 }
 
 button {
   display: block;
-  margin: 8px 0;
-  padding: 10px;
+  margin: 10px 0; /* Aumento dello spazio */
+  padding: 12px; /* Aumento del padding per un'area cliccabile più grande */
   width: 100%;
   border: none;
   border-radius: 8px;
   background: #0077cc;
   color: white;
   cursor: pointer;
-  font-size: 15px;
-  transition: background 0.3s, transform 0.1s;
+  font-size: 16px; /* Dimensione del font più grande */
+  transition: background 0.3s, transform 0.1s, border 0.3s; /* Aggiunta la transizione per il bordo */
 }
 
 button:hover {
@@ -70,7 +70,13 @@ button:hover {
   margin-top: 10px;
   color: #d9534f;
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px; /* Dimensione del font più grande */
+}
+
+/* Nuova classe per il feedback visivo di errore */
+.wrong-answer {
+  border: 2px solid #d9534f;
+  animation: shake 0.3s ease-in-out;
 }
 
 #congrats {
@@ -99,10 +105,16 @@ canvas {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* MEDIA QUERY MOBILE */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* MEDIA QUERY MOBILE (Ora con valori più grandi) */
 @media (max-width: 480px) {
   body {
-    background-size: 60px 60px; /* pattern più piccolo */
+    background-size: 60px 60px;
     padding-top: 15px;
   }
 
@@ -112,24 +124,24 @@ canvas {
   }
 
   h1 {
-    font-size: 20px;
+    font-size: 22px; /* Aumentato */
   }
 
   h2 {
-    font-size: 16px;
+    font-size: 18px; /* Aumentato */
   }
 
   button {
-    padding: 8px;
-    font-size: 14px;
+    padding: 10px; /* Aumentato */
+    font-size: 15px; /* Aumentato */
   }
 
   .hint {
-    font-size: 12px;
+    font-size: 13px; /* Aumentato */
   }
 
   #congrats {
-    font-size: 20px;
-    padding: 20px;
+    font-size: 22px; /* Aumentato */
+    padding: 25px; /* Aumentato */
   }
 }
