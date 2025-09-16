@@ -54,6 +54,12 @@ questions.forEach((q, i) => {
         }
       } else {
         hint.textContent = a.hint || "Risposta sbagliata, riprova!";
+        // Aggiungi la classe per l'animazione e il bordo
+        btn.classList.add("wrong-answer");
+        // Rimuovi la classe dopo un breve ritardo
+        setTimeout(() => {
+          btn.classList.remove("wrong-answer");
+        }, 500);
       }
     };
     box.appendChild(btn);
@@ -62,7 +68,7 @@ questions.forEach((q, i) => {
   quizDiv.appendChild(box);
 });
 
-// 🎊 Effetto coriandoli
+// 🎊 Effetto coriandoli (Nessuna modifica)
 const canvas = document.getElementById("confetti");
 const ctx = canvas.getContext("2d");
 let confetti = [];
