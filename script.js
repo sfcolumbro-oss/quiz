@@ -1,6 +1,6 @@
-const questions = [
+Qual questions = [
   {
-    text: "Qual è il colore del cielo in una giornata serena?",
+    text: "ciao Qual è il colore del cielo in una giornata serena?",
     answers: [
       { text: "Blu", correct: true },
       { text: "Verde", correct: false, hint: "Pensa al mare, ma più in alto!" },
