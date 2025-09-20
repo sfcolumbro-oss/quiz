@@ -4,22 +4,21 @@ body {
   padding: 0;
   background-color: pink;
   background-image: url("18e8917895223c3f2354604deb7fb85c.png"); /* zampette nere */
-  background-size: 80px 80px;
+  background-size: 100px 100px;
   background-repeat: repeat;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 20px;
+  align-items: center;
   overflow-x: hidden;
 }
 
 .container {
-  width: 95%;
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   position: relative;
   z-index: 2;
@@ -37,27 +36,25 @@ body {
 h1 {
   text-align: center;
   color: #333;
-  margin-bottom: 15px;
-  font-size: 22px;
+  margin-bottom: 20px;
 }
 
 h2 {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   color: #333;
-  font-size: 18px;
 }
 
 button {
   display: block;
-  margin: 8px 0;
-  padding: 10px;
+  margin: 10px 0;
+  padding: 12px;
   width: 100%;
   border: none;
   border-radius: 8px;
   background: #0077cc;
   color: white;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px;
   transition: background 0.3s, transform 0.1s;
 }
 
@@ -67,17 +64,17 @@ button:hover {
 }
 
 .hint {
-  margin-top: 10px;
+  margin-top: 12px;
   color: #d9534f;
   font-style: italic;
-  font-size: 13px;
+  display: none;
 }
 
 #congrats {
   display: none;
   text-align: center;
-  font-size: 24px;
-  padding: 30px;
+  font-size: 26px;
+  padding: 40px;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -99,37 +96,17 @@ canvas {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* MEDIA QUERY MOBILE */
 @media (max-width: 480px) {
-  body {
-    background-size: 60px 60px;
-    padding-top: 15px;
-  }
-
   .container {
     padding: 15px;
-    border-radius: 10px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  h2 {
-    font-size: 16px;
   }
 
   button {
-    padding: 8px;
     font-size: 14px;
+    padding: 10px;
   }
 
-  .hint {
-    font-size: 12px;
-  }
-
-  #congrats {
-    font-size: 20px;
-    padding: 20px;
+  h1 {
+    font-size: 22px;
   }
 }
