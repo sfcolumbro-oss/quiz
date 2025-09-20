@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,9 +11,25 @@
   <canvas id="confetti"></canvas>
 
   <div class="container">
-    <h1>ciao Quiz Interattivo</h1>
-    <div id="quiz"></div>
-    <div id="congrats">🎉 Congratulazioni! Hai completato il quiz! 🎉</div>
+    <h1>Quiz</h1>
+
+    <div id="q1" class="question-box active">
+      <h2>Qual è il colore del cielo?</h2>
+      <button onclick="nextQuestion(1, true)">Blu</button>
+      <button onclick="showHint(1)">Verde</button>
+      <div id="hint1" class="hint" style="display:none;">Riprova, non è questo 😅</div>
+    </div>
+
+    <div id="q2" class="question-box">
+      <h2>Quante zampe ha un cane?</h2>
+      <button onclick="nextQuestion(2, true)">4</button>
+      <button onclick="showHint(2)">6</button>
+      <div id="hint2" class="hint" style="display:none;">Attenzione! I cani non sono insetti 🐶</div>
+    </div>
+
+    <div id="congrats">
+      🎉 Complimenti, hai finito il quiz! 🎉
+    </div>
   </div>
 
   <script src="script.js"></script>

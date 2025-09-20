@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: pink;
-  background-image: url("18e8917895223c3f2354604deb7fb85c.png");
+  background-image: url("18e8917895223c3f2354604deb7fb85c.png"); /* zampette nere */
   background-size: 80px 80px;
   background-repeat: repeat;
   min-height: 100vh;
@@ -37,28 +37,28 @@ body {
 h1 {
   text-align: center;
   color: #333;
-  margin-bottom: 20px; /* Aumento dello spazio */
-  font-size: 24px; /* Dimensione base più grande */
+  margin-bottom: 15px;
+  font-size: 22px;
 }
 
 h2 {
-  margin-bottom: 15px; /* Aumento dello spazio */
+  margin-bottom: 12px;
   color: #333;
-  font-size: 20px; /* Dimensione base più grande */
+  font-size: 18px;
 }
 
 button {
   display: block;
-  margin: 10px 0; /* Aumento dello spazio */
-  padding: 12px; /* Aumento del padding per un'area cliccabile più grande */
+  margin: 8px 0;
+  padding: 10px;
   width: 100%;
   border: none;
   border-radius: 8px;
   background: #0077cc;
   color: white;
   cursor: pointer;
-  font-size: 16px; /* Dimensione del font più grande */
-  transition: background 0.3s, transform 0.1s, border 0.3s; /* Aggiunta la transizione per il bordo */
+  font-size: 15px;
+  transition: background 0.3s, transform 0.1s;
 }
 
 button:hover {
@@ -70,13 +70,7 @@ button:hover {
   margin-top: 10px;
   color: #d9534f;
   font-style: italic;
-  font-size: 14px; /* Dimensione del font più grande */
-}
-
-/* Nuova classe per il feedback visivo di errore */
-.wrong-answer {
-  border: 2px solid #d9534f;
-  animation: shake 0.3s ease-in-out;
+  font-size: 13px;
 }
 
 #congrats {
@@ -105,13 +99,7 @@ canvas {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
-}
-
-/* MEDIA QUERY MOBILE (Ora con valori più grandi) */
+/* MEDIA QUERY MOBILE */
 @media (max-width: 480px) {
   body {
     background-size: 60px 60px;
@@ -124,24 +112,24 @@ canvas {
   }
 
   h1 {
-    font-size: 22px; /* Aumentato */
+    font-size: 20px;
   }
 
   h2 {
-    font-size: 18px; /* Aumentato */
+    font-size: 16px;
   }
 
   button {
-    padding: 10px; /* Aumentato */
-    font-size: 15px; /* Aumentato */
+    padding: 8px;
+    font-size: 14px;
   }
 
   .hint {
-    font-size: 13px; /* Aumentato */
+    font-size: 12px;
   }
 
   #congrats {
-    font-size: 22px; /* Aumentato */
-    padding: 25px; /* Aumentato */
+    font-size: 20px;
+    padding: 20px;
   }
 }
