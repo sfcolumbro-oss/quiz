@@ -50,7 +50,6 @@ questions.forEach((q, i) => {
           quizDiv.children[i + 1].classList.add("active");
         } else {
           document.getElementById("congrats").style.display = "block";
-          startConfetti();
         }
       } else {
         hint.textContent = a.hint || "Risposta sbagliata, riprova!";
