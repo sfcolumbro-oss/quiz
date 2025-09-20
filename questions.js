@@ -43,13 +43,13 @@ const questions = [
   },
   {
     question: "Quali libri abbiamo pubblicato?",
-    answers: ["'Tutto sul cucciolo'", "'Tutto sul barboncini'", "Entrambi i precedenti", "Nessuno dei precedenti"],
+    answers: ["'Tutto sul cucciolo'", "'Tutto sul barboncino'", "Entrambi i precedenti", "Nessuno dei precedenti"],
     correct: 2,
     hint: "Scoprili sul tavolo principale dello stand!"
   },
   {
     question: "Come si chiama l'allevatrice de i Diamantini?",
-    answers: ["Francesca", "Giulia", "Rosella", "Ambra"],
+    answers: ["Francesca", "Giulia", "Rossella", "Ambra"],
     correct: 2,
     hint: "Cerca la brochure del nostro allevamento!"
   },
