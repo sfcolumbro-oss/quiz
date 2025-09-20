@@ -1,7 +1,15 @@
 const quizContainer = document.getElementById("quiz");
 const congratsBox = document.getElementById("congrats");
+const startScreen = document.getElementById("start-screen");
 
 let currentQuestion = 0;
+
+function startQuiz() {
+  startScreen.style.display = "none";
+  quizContainer.style.display = "block";
+  currentQuestion = 0;
+  showQuestion(currentQuestion);
+}
 
 function showQuestion(index) {
   if (index >= questions.length) {
@@ -33,5 +41,3 @@ function checkAnswer(selected) {
     document.getElementById("hint").style.display = "block";
   }
 }
-
-showQuestion(currentQuestion);
