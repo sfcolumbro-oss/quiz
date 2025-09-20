@@ -2,7 +2,7 @@ const questions = [
   {
     question: "Qual è la capitale d’Italia?",
     answers: ["Milano", "Roma", "Napoli", "Torino"],
-    correct: 1,
+    correct: 2,
     hint: "È anche chiamata la città eterna."
   },
   {
