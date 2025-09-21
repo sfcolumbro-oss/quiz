@@ -64,8 +64,7 @@ function showQuestion(index) {
     fetch(API_URL, { method: "POST" })
       .then(res => res.json())
       .then(data => {
-        congratsBox.innerHTML = `🎉 Complimenti! Hai finito il quiz 🎉<br>
-                                 Numero di completamenti: ${data.total}`;
+        console.log("Quiz completato! Totale completamenti:", data.total);
       })
       .catch(err => console.error("Errore:", err));
 
