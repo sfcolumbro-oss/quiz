@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(239, 201, 94);
-  background-image: url("18e8917895223c3f2354604deb7fb85c.png"); /* zampette nere */
+  background-image: url("logo.png.PNG"); /* zampette nere */
   background-size: 100px 100px;
   background-repeat: repeat;
   min-height: 100vh;
@@ -72,7 +72,7 @@ button:hover {
 
 #congrats {
   display: none;
-  text-align: justify;
+  text-align: center;
   font-size: 26px;
   padding: 40px;
   background: #AEBE22;
